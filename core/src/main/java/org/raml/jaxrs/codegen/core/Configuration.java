@@ -61,7 +61,8 @@ public class Configuration
     private boolean useJsr303Annotations = false;
     private AnnotationStyle jsonMapper = AnnotationStyle.JACKSON1;
     private File sourceDirectory;
-    private Class methodThrowException = Exception.class;    
+    private Class methodThrowException = Exception.class;
+    private boolean useLongIntegers = false;
 
     public GenerationConfig createJsonSchemaGenerationConfig()
     {
@@ -95,6 +96,12 @@ public class Configuration
             public boolean isIncludeToString()
             {
                 return false;
+            }
+
+            @Override
+            public boolean isUseLongIntegers()
+            {
+                return useLongIntegers;
             }
         };
     }
@@ -148,11 +155,11 @@ public class Configuration
     {
         this.jsonMapper = jsonMapper;
     }
-    
+
     public Class getMethodThrowException() {
         return methodThrowException;
     }
-    
+
     public void setMethodThrowException(Class methodThrowException) {
         this.methodThrowException = methodThrowException;
     }
@@ -164,4 +171,15 @@ public class Configuration
     public void setSourceDirectory(File sourceDirectory) {
         this.sourceDirectory = sourceDirectory;
     }
+
+    public boolean useLongIntegers()
+    {
+        return useLongIntegers;
+    }
+
+    public void setUseLongIntegers(final boolean useLongIntegers)
+    {
+        this.useLongIntegers = useLongIntegers;
+    }
+
 }

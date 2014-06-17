@@ -109,6 +109,12 @@ public class RamlJaxrsCodegenMojo extends AbstractMojo
     //@Parameter(property = "methodThrowException")
     //private String methodThrowException;
 
+    /**
+     * Should integers be represented by longs?
+     */
+    @Parameter(property = "useLongIntegers", defaultValue = "false")
+    private boolean useLongIntegers;
+
     @Override
     public void execute() throws MojoExecutionException, MojoFailureException
     {
@@ -154,6 +160,8 @@ public class RamlJaxrsCodegenMojo extends AbstractMojo
             configuration.setUseJsr303Annotations(useJsr303Annotations);
             configuration.setJsonMapper(AnnotationStyle.valueOf(jsonMapper.toUpperCase()));
             configuration.setSourceDirectory(sourceDirectory);
+            configuration.setUseLongIntegers(useLongIntegers);
+
             /*
             if (methodThrowException != null) {
                 configuration.setMethodThrowException(Class.forName(methodThrowException));
